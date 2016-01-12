@@ -2,19 +2,19 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on My New Hugo Site</title>
-    <link>/post/</link>
+    <link>http://localhost:1313/post/</link>
     <description>Recent content in Posts on My New Hugo Site</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 12 Jan 2016 14:06:47 -0500</lastBuildDate>
-    <atom:link href="/post/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/post/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>ideas</title>
-      <link>/post/ideas/</link>
+      <link>http://localhost:1313/post/ideas/</link>
       <pubDate>Tue, 12 Jan 2016 14:06:47 -0500</pubDate>
       
-      <guid>/post/ideas/</guid>
+      <guid>http://localhost:1313/post/ideas/</guid>
       <description>&lt;ul&gt;
 &lt;li&gt;Rolling Your Own Redux with RxJS: Simple Example&lt;/li&gt;
 &lt;li&gt;Rolling Your Own Redux with RxJS: Two Stores&lt;/li&gt;
@@ -26,11 +26,79 @@
     
     <item>
       <title>first</title>
-      <link>/post/first/</link>
+      <link>http://localhost:1313/post/first/</link>
       <pubDate>Tue, 12 Jan 2016 13:59:48 -0500</pubDate>
       
-      <guid>/post/first/</guid>
-      <description></description>
+      <guid>http://localhost:1313/post/first/</guid>
+      <description>
+
+&lt;p&gt;Intro text goes here&amp;hellip;&lt;/p&gt;
+
+&lt;p&gt;Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.&lt;/p&gt;
+
+&lt;h4 id=&#34;redux:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;redux&lt;/h4&gt;
+
+&lt;p&gt;Something about Redux, link to egghead, twitter etc&lt;/p&gt;
+
+&lt;h4 id=&#34;rxjs:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;rxjs&lt;/h4&gt;
+
+&lt;p&gt;Excerpt about rxjs from docs, staltz on &amp;lsquo;scan&amp;rsquo; method
+rxjs in angular, linke to thoughtram&lt;/p&gt;
+
+&lt;h4 id=&#34;illustration:e8fb9c67eba912c72729806db31eaa1b&#34;&gt;illustration&lt;/h4&gt;
+
+&lt;p&gt;diagram&lt;/p&gt;
+
+&lt;p&gt;We&amp;rsquo;ll need two streams:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var state$ = new Rx.Subject(),
+  actions$ = new Rx.Subject();
+
+var initialState = {
+  count: 0
+};
+
+var reducer = function(state, action) {
+  switch (action &amp;amp;&amp;amp; action.key) {
+    case &amp;quot;INCREMENT&amp;quot;:
+      var new_state = state;
+      new_state.count += 1;
+      return new_state;
+    default:
+      return state;
+  }
+}
+
+var combined = actions$.scan(reducer, initialState).subscribe((state) =&amp;gt; {
+  state$.next(state);
+})
+
+state$.subscribe(
+  ({count}) =&amp;gt; {
+      ReactDOM.render( &amp;lt;p&amp;gt; Count: {count} &amp;lt;/p&amp;gt;, document.getElementById(&#39;container&#39;));
+})
+
+setInterval(function() {
+  actions$.next({key: &amp;quot;INCREMENT&amp;quot;});
+}, 1500)
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;script src=&#34;http://jsfiddle.net/w7fucdhz/7/embed/&#34;&gt;&lt;/script&gt;
+
+&lt;p&gt;What if we want two? combinereducers&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var combineReducers = function combineReducers(reducers) {
+  return function (state, action) {
+    if (state === undefined) state = {};
+
+    return Object.keys(reducers).reduce(function (nextState, key) {
+      nextState[key] = reducers[key](state[key], action);
+      return nextState;
+    }, {});
+  };
+};
+&lt;/code&gt;&lt;/pre&gt;
+</description>
     </item>
     
   </channel>
