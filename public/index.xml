@@ -83,7 +83,7 @@ setInterval(function() {
 }, 1500)
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;script src=&#34;http://jsfiddle.net/w7fucdhz/7/embed/&#34;&gt;&lt;/script&gt;
+&lt;script async src=&#34;http://jsfiddle.net/naderhen/w7fucdhz/8/embed/&#34;&gt;&lt;/script&gt;
 
 &lt;p&gt;What if we want two? combinereducers&lt;/p&gt;
 

@@ -57,7 +57,7 @@ setInterval(function() {
 }, 1500)
 ```
 
-<script src="http://jsfiddle.net/w7fucdhz/7/embed/"></script>
+<script async src="http://jsfiddle.net/naderhen/w7fucdhz/8/embed/"></script>
 
 
 What if we want two? combinereducers
